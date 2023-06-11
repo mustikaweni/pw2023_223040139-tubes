@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 11, 2023 at 02:19 AM
+-- Generation Time: Jun 11, 2023 at 04:06 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -40,10 +40,10 @@ CREATE TABLE `kuliner` (
 --
 
 INSERT INTO `kuliner` (`id`, `nama_makanan`, `deskripsi_makanan`, `harga`, `gambar`) VALUES
-(2, 'Saumongravlax', 'hwefufhwf', 50, 'm2.png'),
-(3, 'carbonara', 'nsnfjfeanff', 50, 'm3.jpg'),
-(4, 'avocado salad', 'kshsbj', 30, 'm4.jpg'),
-(6, 'sushi', 'fhtfhn', 35000, 'm1.jpeg');
+(2, 'Saumongravlax', 'asdasdasd', 35000, '6485f0349b6b4.png'),
+(3, 'carbonara', 'Molestie ac feugiat sed lectus. ', 35000, 'm3.jpg'),
+(4, 'avocado salad', 'Molestie ac feugiat sed lectus', 35000, 'm4.jpg'),
+(6, 'sushi', 'Molestie ac feugiat sed lectus', 35000, 'm1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -72,21 +72,18 @@ INSERT INTO `login` (`username`, `password`) VALUES
 CREATE TABLE `user` (
   `id` int NOT NULL,
   `username` varchar(50) NOT NULL,
-  `pasword` varchar(255) NOT NULL
+  `pasword` varchar(255) NOT NULL,
+  `role` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `pasword`) VALUES
-(2, 'admin', '$2y$10$q2gHQIVavI4kO4MGCCwHQepAlThNInvcqt8iTvVIiSkzZ6ussE/0e'),
-(3, 'makanan', '$2y$10$T9nwRf3OZKyxw.monWxLB.cQYBqfibjiwy91MJ32CLStfFDUSn6Yq'),
-(4, 'total', '$2y$10$WdGf52wkPujNzvnmzZVQBuMzvjWFK9qyE93bur5vebUj7O5aGvJPS'),
-(5, 'run', '$2y$10$R369X83Q5KbM0/FkEzxnfebRyxFpaKt.sQzAWE3HYeRmYU04ek0MS'),
-(6, 'memesan', '$2y$10$MsQP2kfrlcertJvqeavy2ekWewFENGBEj2Wulv8T4X7UON4mvE0Aa'),
-(7, 'serba', '$2y$10$nSp3y8GxZACqEhxv4ulSdOFL3vvha8qj/EQ0xkS6HSqFHvrw4u6Ea'),
-(8, 'ika', '$2y$10$begLmz4KdpY1L.vLhjoEzuMej1M9t4h/cz3Fusi5nn5.sZO8mAiny');
+INSERT INTO `user` (`id`, `username`, `pasword`, `role`) VALUES
+(2, 'admin', '$2y$10$q2gHQIVavI4kO4MGCCwHQepAlThNInvcqt8iTvVIiSkzZ6ussE/0e', 'admin'),
+(9, 'mustika', '$2y$10$uE8MT/LvxXxUtXNb8MSgGO8ugONwNOzd1EcBnNpnn8hEad75o18Z6', 'user'),
+(10, 'ika', '$2y$10$jY7NlXizhMktpIpC.vLde.BaMdpzaYGlST.Qp4pxq4godA4skbC5y', 'user');
 
 --
 -- Indexes for dumped tables
@@ -112,13 +109,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kuliner`
 --
 ALTER TABLE `kuliner`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

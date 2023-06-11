@@ -5,14 +5,14 @@ require 'functions.php';
 $id = $_GET["id"];
 
 // query data daftar menu berdasarkan id
-$kln = query("SELECT * FROM kuliner  WHERE id = $id")[0];
+$kln = query("SELECT * FROM kuliner WHERE id = $id")[0];
 
 
 // cek apakah tombol submit sudah ditekan atau belum
-if( isset($_POST["submit"]) ) {
-	
+if (isset($_POST["submit"])) {
+
 	// cek apakah data berhasil diubah atau tidak
-	if( ubah($_POST) > 0 ) {
+	if (ubah($_POST) > 0) {
 		echo "
 			<script>
 				alert('data berhasil diubah!');
@@ -27,21 +27,21 @@ if( isset($_POST["submit"]) ) {
 			</script>
 		";
 	}
-
-
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Ubah data Daftar Menu</title>
 </head>
+
 <body>
 	<h1>Ubah data Daftar Menu</h1>
 
 	<form action="" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="<?= $kln["id"]; ?>">
-		<input type="hidden" name="gambarlama" value="<?= $kln["id"]; ?>">
+		<input type="hidden" name="gambarlama" value="<?= $kln["gambar"]; ?>">
 		<ul>
 			<li>
 				<label for="nama_makanan">nama_makanan :</label>
@@ -49,15 +49,16 @@ if( isset($_POST["submit"]) ) {
 			</li>
 			<li>
 				<label for="deskripsi_makanan">Deskripsi:</label>
-				<input type="text" name="deskripsi" id="deskripsi_makanan" value="<?= $kln["deskripsi_makanan"];?>">
-			</li>
-			<li>
-				<label for="gambar">Gambar :</label>
-				<input type="file" name="gambar" id="gambar" value="<?= $kln["gambar"]; ?>">
+				<input type="text" name="deskripsi" id="deskripsi_makanan" value="<?= $kln["deskripsi_makanan"]; ?>">
 			</li>
 			<li>
 				<label for="harga">Harga :</label>
-				<input type="text" name="harga" id="harga" value="<?= $kln["harga"]; ?>">
+				<input type="number" name="harga" id="harga" value="<?= $kln["harga"]; ?>">
+			</li>
+			<li>
+				<label for="gambar">Gambar :</label>
+				<img src="img/<?= $kln["gambar"]; ?>" alt="<?= $kln["gambar"]; ?>">
+				<input type="file" name="gambar" id="gambar">
 			</li>
 			<li>
 
@@ -66,9 +67,6 @@ if( isset($_POST["submit"]) ) {
 		</ul>
 
 	</form>
-
-
-
-
 </body>
+
 </html>

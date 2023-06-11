@@ -103,16 +103,21 @@ function ubah($data)
 
     $id = $data["id"];
     $nama_makanan = htmlspecialchars($data["nama_makanan"]);
-    $deskripsi_makanan = htmlspecialchars($data["deskripsi_makanan"]);
+    $deskripsi_makanan = $data["deskripsi"];
     $harga = htmlspecialchars($data["harga"]);
-    $gambar = htmlspecialchars($data["gambar"]);
+    $gambarLama = htmlspecialchars($data["gambarlama"]);
 
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+    }
 
     $query = "UPDATE kuliner SET
                     nama_makanan = '$nama_makanan',
                     deskripsi_makanan = '$deskripsi_makanan',
                     harga= '$harga',
-                    gambar = '$gambar',
+                    gambar = '$gambar'
                   WHERE id = $id
                 ";
     // var_dump($query); die;
@@ -143,6 +148,7 @@ function registrasi($data)
     $username = strtolower(stripslashes($data["username"]));
     $password = mysqli_real_escape_string($conn, $data["password"]);
     $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+    $role = 'user';
 
     // cek username sudah ada atau belum
     $result = mysqli_query($conn, "SELECT username FROM user 
@@ -168,7 +174,7 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // tambahkan userbaru ke database
-    mysqli_query($conn, "INSERT INTO user VALUES(NULL, '$username', '$password')");
+    mysqli_query($conn, "INSERT INTO user VALUES(NULL, '$username', '$password', '$role')");
 
     return mysqli_affected_rows($conn);
 }

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'functions.php';
 
 $title = 'Home';
@@ -24,7 +26,7 @@ $kuliner = query("SELECT * FROM kuliner");
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 </head>
 
@@ -37,8 +39,12 @@ $kuliner = query("SELECT * FROM kuliner");
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#menu">Menu</a></li>
-      <li><a href="#pesanan">Pesanan</a></li>
       <li><a href="#contact">Contact</a></li>
+      <?php if (isset($_SESSION['login'])) : ?>
+        <li><a href="logout.php">Logout</a></li>
+      <?php else : ?>
+        <li><a href="login.php">Login</a></li>
+      <?php endif; ?>
     </ul>
 
     <div class="h-icons">
@@ -143,22 +149,27 @@ $kuliner = query("SELECT * FROM kuliner");
   <div class="menu-content">
     <?php foreach ($kuliner as $food) : ?>
       <div class="row">
-        <img src="img/<?= $food['gambar'] ?>">
-        <div class="menu-text">
-          <div class="menu-left">
-            <h4><?= $food['nama_makanan'] ?></h4>
+        <div class="col">
+          <img src="img/<?= $food['gambar'] ?>">
+          <div class="menu-text">
+            <div class="menu-left">
+              <h4><?= $food['nama_makanan'] ?></h4>
+            </div>
+            <div class="menu-right" style="margin-right: 30px;">
+              <h4>Rp.35k</h4>
+            </div>
           </div>
-          <div class="menu-right">
-            <h4>Rp.35k</h4>
+          <p><?= $food['deskripsi_makanan'] ?></p>
+          <div class="star">
+            <a href="#"><i class='bx bxs-star'></i></a>
+            <a href="#"><i class='bx bxs-star'></i></a>
+            <a href="#"><i class='bx bxs-star'></i></a>
+            <a href="#"><i class='bx bxs-star'></i></a>
+            <a href="#"><i class='bx bxs-star'></i></a>
+            <a href="https://wa.me/+6283107411410" style="margin-left: 50px;"><span class="material-symbols-outlined">
+                shopping_cart_checkout
+              </span></a>
           </div>
-        </div>
-        <p><?= $food['deskripsi_makanan'] ?></p>
-        <div class="star">
-          <a href="#"><i class='bx bxs-star'></i></a>
-          <a href="#"><i class='bx bxs-star'></i></a>
-          <a href="#"><i class='bx bxs-star'></i></a>
-          <a href="#"><i class='bx bxs-star'></i></a>
-          <a href="#"><i class='bx bxs-star'></i></a>
         </div>
       </div>
     <?php endforeach; ?>
@@ -200,7 +211,6 @@ $kuliner = query("SELECT * FROM kuliner");
     <div class="contact-content">
       <h4>Follow Us</h4>
       <li><a href="https://instagram.com/__mustikaaa?igshid=MzRlODBiNWFlZA==">Instagram</a></li>
-      <li><a href="#">Facebok</a></li>
       <li><a href="https://www.tiktok.com/@hidesember____?_t=8cpNVEdxq0g&_r=1">TikTok</a></li>
     </div>
 

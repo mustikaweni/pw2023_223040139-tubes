@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require 'functions.php';
 
 
@@ -45,6 +53,7 @@ if (isset($_POST["cari"])) {
             <th>No.</th>
             <th>Aksi</th>
             <th>nama_makanan</th>
+            <th>deskripsi_makanan</th>
             <th>gambar</th>
             <th>harga</th>
         </tr>
@@ -58,6 +67,7 @@ if (isset($_POST["cari"])) {
                     <a href="hapus.php?id=<?= $row["id"]; ?>">hapus</a>
                 </td>
                 <td><?= $row["nama_makanan"]; ?></td>
+                <td><?= $row["deskripsi_makanan"]; ?></td>
                 <td><img src="img/<?= $row["gambar"]; ?> " width="50"></td>
                 <td><?= $row["harga"]; ?></td>
             </tr>

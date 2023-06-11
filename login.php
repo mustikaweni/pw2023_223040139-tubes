@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require 'functions.php';
 
 if (isset($_POST["login"])) {
@@ -15,8 +18,29 @@ if (isset($_POST["login"])) {
 		// cek password
 		$row = mysqli_fetch_assoc($result);
 		if (password_verify($password, $row["pasword"])) {
-			header("Location: index1.php");
-			exit;
+			$_SESSION['login'] = true;
+			$_SESSION['role'] = $row['role'];
+
+			if ($_SESSION['role'] == 'admin') {
+				echo "
+				<script>
+					alert('Anda berhasil login!');
+					window.location.href = 'index1.php';
+				</script>
+				";
+			}
+
+			if ($_SESSION['role'] == 'user') {
+				echo "
+				<script>
+					alert('Anda berhasil login!');
+					window.location.href = 'index.php';
+				</script>
+				";
+			}
+
+			// header("Location: index1.php");
+			// exit;
 		}
 	}
 
